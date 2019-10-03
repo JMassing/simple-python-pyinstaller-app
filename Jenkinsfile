@@ -1,5 +1,9 @@
 pipeline {
-    agent none 
+    agent {
+                docker {
+                    image 'python:2-alpine' 
+                }
+            } 
     stages {
         stage('Build') { 
             agent any
