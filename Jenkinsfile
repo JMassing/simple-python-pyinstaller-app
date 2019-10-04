@@ -21,7 +21,16 @@ pipeline {
 
                 sh 'echo Running Unit Tests'
                 sh 'docker pull qnib/pytest'
-                }            
+                sh 'docker run -i -d --name pytest -v "C:\\Users\\julim\\Desktop\\Courses\\Jenkins\\simple-python-pyinstaller-app:/test" -w="//test" qnib/pytest'
+                sh 'docker exec pytest py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
+                } 
+            post {
+                always {
+                    junit 'test-reports/results.xml'
+                    sh 'docker stop pytest'
+                    sh 'docker rm pytest'
+                }
+            }           
         }
     }
 }
