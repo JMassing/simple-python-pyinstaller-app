@@ -26,9 +26,10 @@ pipeline {
                 } 
             post {
                 always {
+                    sh 'docker exec junit \\test-reports\\results.xml'
                     sh 'docker stop pytest'
                     sh 'docker rm pytest'
-                    junit 'C:\\Users\\julim\\Desktop\\Courses\\Jenkins\\simple-python-pyinstaller-app\\test-reports\\results.xml'
+                    
                 }
             }           
         }
