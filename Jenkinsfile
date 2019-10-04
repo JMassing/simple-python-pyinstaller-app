@@ -26,7 +26,7 @@ pipeline {
                 } 
             post {
                 always {
-                    sh 'docker exec junit \\test-reports\\results.xml'
+                    sh 'docker exec pytest junit \\test-reports\\results.xml'
                     sh 'docker stop pytest'
                     sh 'docker rm pytest'
                     
